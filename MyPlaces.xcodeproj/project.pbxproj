@@ -13,6 +13,7 @@
 		BFE5EB4D27849D5C00352C00 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BFE5EB4C27849D5C00352C00 /* Assets.xcassets */; };
 		BFE5EB5027849D5C00352C00 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFE5EB4E27849D5C00352C00 /* LaunchScreen.storyboard */; };
 		BFE5EB5A2785C72A00352C00 /* MainTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE5EB592785C72A00352C00 /* MainTableViewController.swift */; };
+		BFE5EB5C2788C42200352C00 /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE5EB5B2788C42200352C00 /* CustomTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		BFE5EB4F27849D5C00352C00 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BFE5EB5127849D5C00352C00 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BFE5EB592785C72A00352C00 /* MainTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewController.swift; sourceTree = "<group>"; };
+		BFE5EB5B2788C42200352C00 /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +62,7 @@
 				BFE5EB4527849D5900352C00 /* SceneDelegate.swift */,
 				BFE5EB4927849D5900352C00 /* Main.storyboard */,
 				BFE5EB592785C72A00352C00 /* MainTableViewController.swift */,
+				BFE5EB5B2788C42200352C00 /* CustomTableViewCell.swift */,
 				BFE5EB4C27849D5C00352C00 /* Assets.xcassets */,
 				BFE5EB4E27849D5C00352C00 /* LaunchScreen.storyboard */,
 				BFE5EB5127849D5C00352C00 /* Info.plist */,
@@ -140,6 +143,7 @@
 			files = (
 				BFE5EB4427849D5900352C00 /* AppDelegate.swift in Sources */,
 				BFE5EB5A2785C72A00352C00 /* MainTableViewController.swift in Sources */,
+				BFE5EB5C2788C42200352C00 /* CustomTableViewCell.swift in Sources */,
 				BFE5EB4627849D5900352C00 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
