@@ -21,5 +21,7 @@
 			</array>
 		</dict>
 	</dict>
+	<key>NSCameraUsageDescription</key>
+	<string>$(PRODUCT_NAME) photo usage</string>
 </dict>
 </plist>
