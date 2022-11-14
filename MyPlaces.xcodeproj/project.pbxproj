@@ -8,7 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		65B942C63D2700C802556DD5 /* Pods_MyPlaces.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81B3D0B974DFBAD1B29C44C0 /* Pods_MyPlaces.framework */; };
+		BF19EE132912C15E006E49A3 /* RatingControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF19EE122912C15E006E49A3 /* RatingControl.swift */; };
 		BF7BA27D28BBA70C00F565AA /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7BA27C28BBA70C00F565AA /* StorageManager.swift */; };
+		BF96AB1C29226A4B0082D714 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF96AB1B29226A4B0082D714 /* MapViewController.swift */; };
 		BFA3EB77278B44F30030F492 /* PlaceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA3EB76278B44F30030F492 /* PlaceModel.swift */; };
 		BFA3EB79278E01350030F492 /* NewPlaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA3EB78278E01350030F492 /* NewPlaceViewController.swift */; };
 		BFE5EB4427849D5900352C00 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE5EB4327849D5900352C00 /* AppDelegate.swift */; };
@@ -24,7 +26,9 @@
 		3D1292BB2C7383D087895893 /* Pods-MyPlaces.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyPlaces.release.xcconfig"; path = "Target Support Files/Pods-MyPlaces/Pods-MyPlaces.release.xcconfig"; sourceTree = "<group>"; };
 		4383DE27B7FFC5BDBB9CC194 /* Pods-MyPlaces.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyPlaces.debug.xcconfig"; path = "Target Support Files/Pods-MyPlaces/Pods-MyPlaces.debug.xcconfig"; sourceTree = "<group>"; };
 		81B3D0B974DFBAD1B29C44C0 /* Pods_MyPlaces.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyPlaces.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BF19EE122912C15E006E49A3 /* RatingControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingControl.swift; sourceTree = "<group>"; };
 		BF7BA27C28BBA70C00F565AA /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
+		BF96AB1B29226A4B0082D714 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		BFA3EB76278B44F30030F492 /* PlaceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceModel.swift; sourceTree = "<group>"; };
 		BFA3EB78278E01350030F492 /* NewPlaceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPlaceViewController.swift; sourceTree = "<group>"; };
 		BFE5EB4027849D5900352C00 /* MyPlaces.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyPlaces.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -89,6 +93,7 @@
 			isa = PBXGroup;
 			children = (
 				BFE5EB5B2788C42200352C00 /* CustomTableViewCell.swift */,
+				BF19EE122912C15E006E49A3 /* RatingControl.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -120,6 +125,7 @@
 				BFE5EB4327849D5900352C00 /* AppDelegate.swift */,
 				BFE5EB4527849D5900352C00 /* SceneDelegate.swift */,
 				BFE5EB4927849D5900352C00 /* Main.storyboard */,
+				BF96AB1B29226A4B0082D714 /* MapViewController.swift */,
 				BFE5EB4C27849D5C00352C00 /* Assets.xcassets */,
 				BFE5EB4E27849D5C00352C00 /* LaunchScreen.storyboard */,
 				BFE5EB5127849D5C00352C00 /* Info.plist */,
@@ -246,6 +252,8 @@
 				BFA3EB79278E01350030F492 /* NewPlaceViewController.swift in Sources */,
 				BFE5EB5A2785C72A00352C00 /* MainViewController.swift in Sources */,
 				BF7BA27D28BBA70C00F565AA /* StorageManager.swift in Sources */,
+				BF96AB1C29226A4B0082D714 /* MapViewController.swift in Sources */,
+				BF19EE132912C15E006E49A3 /* RatingControl.swift in Sources */,
 				BFA3EB77278B44F30030F492 /* PlaceModel.swift in Sources */,
 				BFE5EB5C2788C42200352C00 /* CustomTableViewCell.swift in Sources */,
 				BFE5EB4627849D5900352C00 /* SceneDelegate.swift in Sources */,

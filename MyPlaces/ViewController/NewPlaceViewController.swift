@@ -20,6 +20,7 @@ class NewPlaceViewController: UITableViewController {
     @IBOutlet weak var placeLocation: UITextField!
     @IBOutlet weak var placeType: UITextField!
     
+    @IBOutlet weak var ratingControl: RatingControl!
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -69,7 +70,15 @@ class NewPlaceViewController: UITableViewController {
             view.endEditing(true)
         }
     }
+    //    MARK: - Navigation
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier != "showMap" {
+            return
+        }
+        let mapVC = segue.destination as!MapViewController
+        mapVC.place = currentPlace
+    }
     func savePlace() {
         
         var image: UIImage?
@@ -83,9 +92,10 @@ class NewPlaceViewController: UITableViewController {
         let imageData = image?.pngData()
         
         let newPlace = Place(name: placeName.text!,
-                              location: placeLocation.text,
-                              type: placeType.text,
-                              imageData: imageData)
+                             location: placeLocation.text,
+                             type: placeType.text,
+                             imageData: imageData,
+                             rating: Double(ratingControl.rating))
         
         
         if currentPlace != nil {
@@ -94,8 +104,9 @@ class NewPlaceViewController: UITableViewController {
                 currentPlace?.location = newPlace.location
                 currentPlace?.type = newPlace.type
                 currentPlace?.imageData = newPlace.imageData
+                currentPlace?.rating = newPlace.rating
             }
-        }else {
+        } else {
             StorageManager.saveObject(newPlace)
         }
     }
@@ -112,6 +123,7 @@ class NewPlaceViewController: UITableViewController {
             placeName.text = currentPlace?.name
             placeLocation.text = currentPlace?.location
             placeType.text = currentPlace?.type
+            ratingControl.rating = Int(currentPlace!.rating)
         }
     }
     
@@ -123,6 +135,8 @@ class NewPlaceViewController: UITableViewController {
         title = currentPlace?.name
         saveButton.isEnabled = true
     }
+    
+    // MARK: - IBActions
     
     @IBAction func cancelAction(_ sender: Any) {
         dismiss(animated: true)
@@ -166,5 +180,4 @@ extension NewPlaceViewController: UIImagePickerControllerDelegate, UINavigationC
         imageIsChanget = true
         dismiss(animated: true)
     }
-    
 }

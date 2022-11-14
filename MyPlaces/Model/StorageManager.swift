@@ -35,14 +35,13 @@ class StorageManager {
     static func seedPlaces() {
         let places = realm.objects(Place.self)
         guard places.count == 0 else { return }
-
         for name in restaurantNames {
             let place = Place(name: name,
                               location: "Bon",
                               type: "Ресторан",
-                              imageData: UIImage(named: name)?.pngData())
+                              imageData: UIImage(named: name)?.pngData(),
+                              rating: 0)
             StorageManager.saveObject(place)
         }
     }
-    
 }
