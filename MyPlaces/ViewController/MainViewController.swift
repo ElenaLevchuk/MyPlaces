@@ -51,7 +51,7 @@ class MainViewController: UIViewController {
         if segue.identifier == "showDetail" {
             guard let indexPath = tableView.indexPathForSelectedRow else { return }
             var place: Place
-            place = isFiltering ? filteredPlaces[indexPath.row] : filteredPlaces[indexPath.row]
+            place = isFiltering ? filteredPlaces[indexPath.row] : places[indexPath.row]
             let newPlaceVC = segue.destination as! NewPlaceViewController
             newPlaceVC.currentPlace = place
         }
