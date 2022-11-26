@@ -34,6 +34,7 @@ class NewPlaceViewController: UITableViewController {
     
     func savePlace() {
         var image: UIImage?
+        
         if imageIsChanget {
             image = placeImage.image
         } else {
@@ -127,13 +128,20 @@ class NewPlaceViewController: UITableViewController {
     //    MARK: - Navigation
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier != "showMap" {
-            return
+        guard let identifier = segue.identifier,
+              let mapVC = segue.destination as? MapViewController
+        else { return }
+        
+        mapVC.incomeSegueIdentifier = identifier
+        mapVC.mapViewControllerDelegate = self
+        
+        if identifier == "showPlace" {
+            mapVC.place.name = placeName.text!
+            mapVC.place.location = placeLocation.text
+            mapVC.place.type = placeType.text
+            mapVC.place.imageData = placeImage.image?.pngData()
         }
-        let mapVC = segue.destination as!MapViewController
-        mapVC.place = currentPlace
     }
-
     // MARK: - IBActions
     @IBAction func cancelAction(_ sender: Any) {
         dismiss(animated: true)
@@ -155,6 +163,7 @@ extension NewPlaceViewController: UITextFieldDelegate {
 
 // MARK: - Work with image
 extension NewPlaceViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
     func chooseImagePicker(source: UIImagePickerController.SourceType){
         if UIImagePickerController.isSourceTypeAvailable(source) {
             let imagePicker = UIImagePickerController()
@@ -164,6 +173,7 @@ extension NewPlaceViewController: UIImagePickerControllerDelegate, UINavigationC
             present(imagePicker, animated: true)
         }
     }
+    
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         placeImage.image = info[.editedImage] as? UIImage
         placeImage.contentMode = .scaleAspectFill
@@ -171,4 +181,13 @@ extension NewPlaceViewController: UIImagePickerControllerDelegate, UINavigationC
         imageIsChanget = true
         dismiss(animated: true)
     }
+    
 }
+
+extension NewPlaceViewController: MapViewcontrollerDelegate {
+    func getAdress(_ adress: String) {
+        placeLocation.text = adress
+    }
+    
+}
+

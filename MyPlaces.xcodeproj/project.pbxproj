@@ -83,6 +83,7 @@
 		BF2914692792E2C000213A2D /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				BF96AB1B29226A4B0082D714 /* MapViewController.swift */,
 				BFE5EB592785C72A00352C00 /* MainViewController.swift */,
 				BFA3EB78278E01350030F492 /* NewPlaceViewController.swift */,
 			);
@@ -125,7 +126,6 @@
 				BFE5EB4327849D5900352C00 /* AppDelegate.swift */,
 				BFE5EB4527849D5900352C00 /* SceneDelegate.swift */,
 				BFE5EB4927849D5900352C00 /* Main.storyboard */,
-				BF96AB1B29226A4B0082D714 /* MapViewController.swift */,
 				BFE5EB4C27849D5C00352C00 /* Assets.xcassets */,
 				BFE5EB4E27849D5C00352C00 /* LaunchScreen.storyboard */,
 				BFE5EB5127849D5C00352C00 /* Info.plist */,
