@@ -19,10 +19,15 @@ class MapViewController: UIViewController {
     var place = Place ()
     let annotationID = "annotationID"
     let locationManager = CLLocationManager()
-    let regionInMeters = 10_000.00
+    let regionInMeters = 1_000.00
     var incomeSegueIdentifier = ""
     var mapViewControllerDelegate: MapViewcontrollerDelegate?
     var placeCoordinate: CLLocationCoordinate2D?
+    var directionsArray: [MKDirections] = []
+    var previousLocation: CLLocation? { didSet {
+        startTrackingLocation()
+        }
+    }
     
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var pinImageView: UIImageView!
@@ -51,16 +56,23 @@ class MapViewController: UIViewController {
         }
     }
     
-    private func getDirection() {
+    private func getDirections() {
         guard let location = locationManager.location?.coordinate else {
             showAlert(title: "Error", message: "Current location is not found")
             return
         }
-        guard let request = createDirectionRequest(from: location) else {
+        guard let request = createDirectionsRequest(from: location) else {
             showAlert(title: "Error", message: "Destination is not found")
             return
         }
+        
+        locationManager.startUpdatingLocation()
+        previousLocation = CLLocation(latitude: location.latitude, longitude: location.longitude)
+        
         let directions = MKDirections(request: request)
+        
+        resetMapView(withNew: directions)
+        
         directions.calculate { response, error in
             if let error = error { print(error); return }
             guard let response = response else {
@@ -78,7 +90,7 @@ class MapViewController: UIViewController {
         }
     }
     
-    private func createDirectionRequest(from coordinate: CLLocationCoordinate2D) -> MKDirections.Request? {
+    private func createDirectionsRequest(from coordinate: CLLocationCoordinate2D) -> MKDirections.Request? {
         guard let destinationCoordinate = placeCoordinate else { return nil }
         let start = MKPlacemark(coordinate: coordinate)
         let destination = MKPlacemark(coordinate: destinationCoordinate)
@@ -89,6 +101,13 @@ class MapViewController: UIViewController {
         request.transportType = .automobile
         request.requestsAlternateRoutes = true
         return request
+    }
+    
+    private func resetMapView(withNew directions: MKDirections) {
+        mapView.removeOverlays(mapView.overlays)
+        directionsArray.append(directions)
+        let _ = directionsArray.map { $0.cancel() }
+        directionsArray.removeAll()
     }
     
     private func setupPlacemark()  {
@@ -123,12 +142,12 @@ class MapViewController: UIViewController {
         }
     }
     
-    private func setupLocationManager(){
+    private func setupLocationManager() {
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
     }
     
-    private func checkLocationAuthorization () {
+    private func checkLocationAuthorization() {
         switch CLLocationManager.authorizationStatus() {
         case.authorizedWhenInUse:mapView.showsUserLocation = true
             if incomeSegueIdentifier == "getAdress" { showUserLocation() }
@@ -153,6 +172,19 @@ class MapViewController: UIViewController {
                 longitudinalMeters: regionInMeters)
             mapView.setRegion(region, animated: true)
         }
+    }
+    
+    private func startTrackingLocation() {
+    
+        let center = getCenterLocation(for: mapView)
+        
+        guard let previousLocation = previousLocation,
+              center.distance(from: previousLocation) > 50 else { return }
+        self.previousLocation = center
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+            self.showUserLocation()
+        }
+        
     }
     
     private func showAlert(title: String, message: String){
@@ -182,9 +214,9 @@ class MapViewController: UIViewController {
         mapViewControllerDelegate?.getAdress(adressLabel.text ?? "")
         dismiss(animated: true)
     }
-    
+
     @IBAction func goButtonPressed(_ sender: Any) {
-        getDirection()
+        getDirections()
     }
     
 }
@@ -194,8 +226,18 @@ class MapViewController: UIViewController {
 extension MapViewController: MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
+        
         let center = getCenterLocation(for: mapView)
         let geocoder = CLGeocoder()
+        
+        if incomeSegueIdentifier == "showPlace" && previousLocation != nil {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                self.showUserLocation()
+            }
+        }
+        
+         geocoder.cancelGeocode()
+        
         geocoder.reverseGeocodeLocation(center) { placemarks, error in
             if let error = error { print(error); return }
             guard let placemarks = placemarks else { return }
@@ -204,6 +246,7 @@ extension MapViewController: MKMapViewDelegate {
             let build = placemark?.subThoroughfare
             self.adressLabel.text = "\(street ?? "")  \(build ?? "")"
         }
+
     }
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
